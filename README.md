@@ -1,5 +1,5 @@
-Intro to PXEBoot with Ansible role
+Manage PXEBoot with Ansible roles
 
-  Ansible PXEBoot Role using DNSMasq: https://github.com/rnunezrgn/PXE/tree/main/PXEboot
+  1. Ansible PXEBoot Role using DNSMasq: https://github.com/rnunezrgn/PXE/tree/main/PXEboot
   
-  Ansible PXEBoot Role using ISC Bind: TBD
+  2. Ansible PXEBoot Role using ISC Bind: TBD
