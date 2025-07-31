@@ -1,0 +1,17 @@
+- name: Check BIOS
+  include_tasks: bios_check.yml
+
+- name: Validate certificates
+  include_tasks: cert_check.yml
+
+- name: Configure ILO access
+  include_tasks: ilo_config.yml
+
+- name: Setup PXE and DNSMasq
+  include_tasks: dnsmasq_setup.yml
+
+- name: Configure network for PXE
+  include_tasks: network_config.yml
+
+- name: Collect logs
+  include_tasks: log_collection.yml

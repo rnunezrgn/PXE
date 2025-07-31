@@ -1,0 +1,7 @@
+- name: Gather BIOS version
+  command: "{{ bios_check_cmd }}"
+  register: bios_version
+
+- name: Output BIOS version
+  debug:
+    msg: "Current BIOS version: {{ bios_version.stdout }}"

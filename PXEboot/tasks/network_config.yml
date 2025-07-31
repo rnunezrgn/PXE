@@ -1,0 +1,21 @@
+- name: Allow TFTP and DNSMasq services in firewalld
+  firewalld:
+    service: "{{ item }}"
+    permanent: true
+    state: enabled
+    immediate: true
+  loop:
+    - dhcp
+    - dns
+    - tftp
+
+- name: Reload firewalld
+  service:
+    name: firewalld
+    state: reloaded
+
+- name: Set SELinux boolean for TFTP
+  seboolean:
+    name: tftp_home_dir
+    state: true
+    persistent: yes

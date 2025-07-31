@@ -1,0 +1,11 @@
+- name: Ensure required cert files exist
+  stat:
+    path: "{{ item }}"
+  loop: "{{ cert_paths }}"
+  register: certs
+
+- name: Fail if certs are missing
+  fail:
+    msg: "Missing certificate: {{ item.stat.path }}"
+  when: not item.stat.exists
+  loop: "{{ certs.results }}"

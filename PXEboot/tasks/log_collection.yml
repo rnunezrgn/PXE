@@ -1,0 +1,17 @@
+- name: Collect rsyslog logs
+  shell: cat /var/log/messages | tail -n 100
+  register: rsyslog_logs
+  ignore_errors: true
+
+- name: Show rsyslog logs
+  debug:
+    msg: "{{ rsyslog_logs.stdout | default('No rsyslog logs found.') }}"
+
+- name: Collect journalctl logs
+  command: journalctl -n 100
+  register: journalctl_logs
+  ignore_errors: true
+
+- name: Show journalctl logs
+  debug:
+    msg: "{{ journalctl_logs.stdout | default('No journalctl logs found.') }}"

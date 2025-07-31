@@ -1,0 +1,4 @@
+required_services:
+  - dnsmasq
+  - tftp
+  - firewalld

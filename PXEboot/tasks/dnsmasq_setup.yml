@@ -1,0 +1,34 @@
+- name: Install dnsmasq and tftp-server
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - dnsmasq
+    - tftp-server
+
+- name: Configure dnsmasq
+  template:
+    src: dnsmasq.conf.j2
+    dest: /etc/dnsmasq.conf
+
+- name: Enable and start dnsmasq
+  service:
+    name: dnsmasq
+    state: started
+    enabled: true
+
+- name: Create PXE directory
+  file:
+    path: "{{ pxe_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Copy PXE bootloader
+  copy:
+    src: pxelinux.0
+    dest: "{{ pxe_dir }}/pxelinux.0"
+
+- name: Deploy kickstart file
+  copy:
+    src: ks.cfg
+    dest: "{{ pxe_dir }}/ks.cfg"

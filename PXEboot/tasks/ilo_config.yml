@@ -1,0 +1,13 @@
+- name: Install ipmitool
+  package:
+    name: ipmitool
+    state: present
+
+- name: Power status via ILO
+  command: >
+    ipmitool -I lanplus -H {{ ilo_host }} -U {{ ilo_username }} -P {{ ilo_password }} chassis power status
+  register: ilo_status
+
+- name: Output ILO status
+  debug:
+    msg: "{{ ilo_status.stdout }}"
